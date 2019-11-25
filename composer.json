@@ -1,0 +1,39 @@
+{
+  "name": "bexvibi/laravel-translation-manager",
+  "description": "Manage Laravel Translations",
+  "keywords": [
+    "laravel",
+    "translations",
+    "translator"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Vildan Bina",
+      "email": "vildanbina@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7",
+    "illuminate/support": "^5.5|^6",
+    "illuminate/translation": "^5.5|^6",
+    "symfony/finder": "^3|^4",
+    "tanmuhittin/laravel-google-translate": "^1.0.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "bexvibi\\TranslationManager\\": "src/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.5-dev"
+    },
+    "laravel": {
+      "providers": [
+        "bexvibi\\TranslationManager\\ManagerServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "stable"
+}
