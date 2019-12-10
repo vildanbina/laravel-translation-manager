@@ -3,21 +3,22 @@
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
-class ManagerServiceProvider extends ServiceProvider {
-	/**
-	 * Indicates if loading of the provider is deferred.
-	 *
-	 * @var bool
-	 */
-	protected $defer = false;
+class ManagerServiceProvider extends ServiceProvider
+{
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
 
-	/**
-	 * Register the service provider.
-	 *
-	 * @return void
-	 */
-	public function register()
-	{
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
         // Register the config publish path
         $configPath = __DIR__ . '/../config/translation-manager.php';
         $this->mergeConfigFrom($configPath, 'translation-manager');
@@ -52,23 +53,23 @@ class ManagerServiceProvider extends ServiceProvider {
             return new Console\CleanCommand($app['translation-manager']);
         });
         $this->commands('command.translation-manager.clean');
-	}
+    }
 
     /**
-	 * Bootstrap the application events.
-	 *
-     * @param  \Illuminate\Routing\Router  $router
-	 * @return void
-	 */
-	public function boot(Router $router)
-	{
-        $viewPath = __DIR__.'/../resources/views';
+     * Bootstrap the application events.
+     *
+     * @param \Illuminate\Routing\Router $router
+     * @return void
+     */
+    public function boot(Router $router)
+    {
+        $viewPath = __DIR__ . '/../resources/views';
         $this->loadViewsFrom($viewPath, 'translation-manager');
         $this->publishes([
-            $viewPath => base_path('resources/views/vendor/translation-manager'),
+            $viewPath => base_path('resources/views/admin/translation-manager'),
         ], 'views');
 
-        $migrationPath = __DIR__.'/../database/migrations';
+        $migrationPath = __DIR__ . '/../database/migrations';
         $this->publishes([
             $migrationPath => base_path('database/migrations'),
         ], 'migrations');
@@ -76,8 +77,7 @@ class ManagerServiceProvider extends ServiceProvider {
         $config = $this->app['config']->get('translation-manager.route', []);
         $config['namespace'] = 'bexvibi\TranslationManager';
 
-        $router->group($config, function($router)
-        {
+        $router->group($config, function ($router) {
             $router->get('view/{groupKey?}', 'Controller@getView')->where('groupKey', '.*');
             $router->get('/{groupKey?}', 'Controller@getIndex')->where('groupKey', '.*');
             $router->post('/add/{groupKey}', 'Controller@postAdd')->where('groupKey', '.*');
@@ -91,22 +91,22 @@ class ManagerServiceProvider extends ServiceProvider {
             $router->post('/publish/{groupKey}', 'Controller@postPublish')->where('groupKey', '.*');
             $router->post('/translate-missing', 'Controller@postTranslateMissing');
         });
-	}
+    }
 
-	/**
-	 * Get the services provided by the provider.
-	 *
-	 * @return array
-	 */
-	public function provides()
-	{
-		return array('translation-manager',
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return array('translation-manager',
             'command.translation-manager.reset',
             'command.translation-manager.import',
             'command.translation-manager.find',
             'command.translation-manager.export',
             'command.translation-manager.clean'
         );
-	}
+    }
 
 }
