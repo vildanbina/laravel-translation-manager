@@ -5,10 +5,10 @@
             font-weight: bold;
         }
     </style>
-    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/jquery-editable/css/jquery-editable.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 @endsection
 @section('content')
-    <div class="col-md-12">
+    <div class="col-md-12" data-module="TranslationManager">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">{{trans('admin.settings')}}</h4>
@@ -43,7 +43,7 @@
                                 </select>
                             </div>
                             <div class="col-sm-2">
-                                <button type="submit" class="btn btn-success btn-block" data-disable-with="Loading..">Import groups</button>
+                                <button type="submit" class="btn btn-success btn-block btn-rounded" data-disable-with="Loading.."><i class="fas fa-upload"></i> Import groups</button>
                             </div>
                         </div>
                     </div>
@@ -51,15 +51,16 @@
                 <form class="form-find" method="POST" action="<?php echo action('\bexvibi\TranslationManager\Controller@postFind') ?>" data-remote="true" role="form" data-confirm="Are you sure you want to scan you app folder? All found translation keys will be added to the database.">
                     <div class="form-group">
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                        <button type="submit" class="btn btn-info" data-disable-with="Searching..">Find translations in files</button>
+                        <button type="submit" class="btn btn-info btn-rounded" data-disable-with="Searching.."><i class="fas fa-search"></i> Find translations in files</button>
                     </div>
                 </form>
                 <?php endif; ?>
                 <?php if(isset($group)) : ?>
-                <form class="form-inline form-publish" method="POST" action="<?php echo action('\bexvibi\TranslationManager\Controller@postPublish', $group) ?>" data-remote="true" role="form" data-confirm="Are you sure you want to publish the translations group '<?php echo $group ?>? This will overwrite existing language files.">
+                <form class="form-inline form-publish" method="POST" action="<?php echo action('\bexvibi\TranslationManager\Controller@postPublish', $group) ?>" data-remote="true" role="form"
+                      data-confirm="Are you sure you want to publish the translations group '<?php echo $group ?>? This will overwrite existing language files.">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                    <button type="submit" class="btn btn-info" data-disable-with="Publishing..">Publish translations</button>
-                    <a href="<?= action('\bexvibi\TranslationManager\Controller@getIndex') ?>" class="btn btn-default">Back</a>
+                    <button type="submit" class="btn btn-info btn-rounded" data-disable-with="Publishing.."><i class="fas fa-upload"></i> Publish translations</button>
+                    <a href="<?= action('\bexvibi\TranslationManager\Controller@getIndex') ?>" class="btn btn-light"><i class="fa fa-reply-all"></i> Back</a>
                 </form>
                 <?php endif; ?>
                 </p>
@@ -78,7 +79,9 @@
                         <input type="text" class="form-control" name="new-group"/>
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-default" name="add-group" value="Add and edit keys"/>
+                        <button type="submit" class="btn btn-light btn-rounded" name="add-group">
+                            <i class="fas fa-edit"></i> Add and edit keys
+                        </button>
                     </div>
                 </form>
                 <?php if($group): ?>
@@ -89,41 +92,9 @@
                         <textarea class="form-control" rows="3" name="keys" placeholder="Add 1 key per line, without the group prefix"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Add keys" class="btn btn-primary">
-                    </div>
-                </form>
-                <div class="row">
-                    <div class="col-sm-2">
-                        <span class="btn btn-default enable-auto-translate-group">Use Auto Translate</span>
-                    </div>
-                </div>
-                <form class="form-add-locale autotranslate-block-group hidden" method="POST" role="form" action="<?php echo action('\bexvibi\TranslationManager\Controller@postTranslateMissing') ?>">
-                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="base-locale">Base Locale for Auto Translations</label>
-                                <select name="base-locale" id="base-locale" class="form-control">
-                                    <?php foreach ($locales as $locale): ?>
-                                    <option value="<?= $locale ?>"><?= $locale ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="new-locale">Enter target locale key</label>
-                                <input type="text" name="new-locale" class="form-control" id="new-locale" placeholder="Enter target locale key"/>
-                            </div>
-                            <?php if(!config('laravel_google_translate.google_translate_api_key')): ?>
-                            <p>
-                                <code>Translating using stichoza/google-translate-php. If you would like to use Google Translate API enter your Google Translate API key to config file laravel_google_translate</code>
-                            </p>
-                            <?php endif; ?>
-                            <div class="form-group">
-                                <input type="hidden" name="with-translations" value="1">
-                                <input type="hidden" name="file" value="<?= $group ?>">
-                                <button type="submit" class="btn btn-default btn-block" data-disable-with="Adding..">Auto translate missing translations</button>
-                            </div>
-                        </div>
+                        <button type="submit" class="btn btn-primary btn-rounded">
+                            <i class="fas fa-plus"></i> Add keys
+                        </button>
                     </div>
                 </form>
                 <hr>
@@ -177,12 +148,12 @@
                     </p>
                     <form class="form-remove-locale" method="POST" role="form" action="<?php echo action('\bexvibi\TranslationManager\Controller@postRemoveLocale') ?>" data-confirm="Are you sure to remove this locale and all of data?">
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                        <ul class="list-locales">
+                        <ul class="list-locales list-unstyled">
                             <?php foreach($locales as $locale): ?>
                             <li>
                                 <div class="form-group">
-                                    <button type="submit" name="remove-locale[<?php echo $locale ?>]" class="btn btn-danger btn-xs" data-disable-with="...">
-                                        &times;
+                                    <button type="submit" name="remove-locale[<?php echo $locale ?>]" class="btn btn-danger btn-rounded btn-xs" data-disable-with="...">
+                                        <i class="fas fa-close"></i>
                                     </button>
                                     <?php echo $locale ?>
 
@@ -202,7 +173,7 @@
                                     <input type="text" name="new-locale" class="form-control"/>
                                 </div>
                                 <div class="col-sm-2">
-                                    <button type="submit" class="btn btn-primary btn-block" data-disable-with="Adding..">Add new locale</button>
+                                    <button type="submit" class="btn btn-primary btn-block btn-rounded" data-disable-with="Adding.."><i class="fas fa-plus"></i> Add new locale</button>
                                 </div>
                             </div>
                         </div>
@@ -210,9 +181,10 @@
                 </fieldset>
                 <fieldset>
                     <legend>Export all translations</legend>
-                    <form class="form-inline form-publish-all" method="POST" action="<?php echo action('\bexvibi\TranslationManager\Controller@postPublish', '*') ?>" data-remote="true" role="form" data-confirm="Are you sure you want to publish all translations group? This will overwrite existing language files.">
+                    <form class="form-inline form-publish-all" method="POST" action="<?php echo action('\bexvibi\TranslationManager\Controller@postPublish', '*') ?>" data-remote="true" role="form"
+                          data-confirm="Are you sure you want to publish all translations group? This will overwrite existing language files.">
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                        <button type="submit" class="btn btn-primary" data-disable-with="Publishing..">Publish all</button>
+                        <button type="submit" class="btn btn-primary btn-rounded" data-disable-with="Publishing.."><i class="fas fa-check"></i> Publish all</button>
                     </form>
                 </fieldset>
 
@@ -225,84 +197,7 @@
 @section('footer_scripts')
     <script src="http://vitalets.github.io/x-editable/assets/poshytip/jquery.poshytip.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ujs/1.2.2/rails.js"></script>
-     <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/jquery-editable/js/jquery-editable-poshytip.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/jquery-editable/js/jquery-editable-poshytip.min.js"></script>
+    <script src="/vendor/x-editable/js/bootstrap-editable.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    <script>
-        jQuery(document).ready(function ($) {
-            $.fn.editable.defaults.mode = 'inline';
-
-            $.ajaxSetup({
-                beforeSend: function (xhr, settings) {
-                    console.log('beforesend');
-                    settings.data += "&_token=<?php echo csrf_token() ?>";
-                }
-            });
-
-            $('.editable').editable().on('hidden', function (e, reason) {
-                var locale = $(this).data('locale');
-                if (reason === 'save') {
-                    $(this).removeClass('status-0').addClass('status-1');
-                }
-                if (reason === 'save' || reason === 'nochange') {
-                    var $next = $(this).closest('tr').next().find('.editable.locale-' + locale);
-                    setTimeout(function () {
-                        $next.editable('show');
-                    }, 300);
-                }
-            });
-
-            $('.group-select').on('change', function () {
-                var group = $(this).val();
-                if (group) {
-                    window.location.href = '<?php echo action('\bexvibi\TranslationManager\Controller@getView') ?>/' + $(this).val();
-                } else {
-                    window.location.href = '<?php echo action('\bexvibi\TranslationManager\Controller@getIndex') ?>';
-                }
-            });
-
-            $("a.delete-key").click(function (event) {
-                event.preventDefault();
-                var row = $(this).closest('tr');
-                var url = $(this).attr('href');
-                var id = row.attr('id');
-                $.post(url, {id: id}, function () {
-                    row.remove();
-                });
-            });
-
-            $('.form-import').on('ajax:success', function (e, data) {
-                $('div.success-import strong.counter').text(data.counter);
-                $('div.success-import').slideDown();
-                window.location.reload();
-            });
-
-            $('.form-find').on('ajax:success', function (e, data) {
-                $('div.success-find strong.counter').text(data.counter);
-                $('div.success-find').slideDown();
-                window.location.reload();
-            });
-
-            $('.form-publish').on('ajax:success', function (e, data) {
-                $('div.success-publish').slideDown();
-            });
-
-            $('.form-publish-all').on('ajax:success', function (e, data) {
-                $('div.success-publish-all').slideDown();
-            });
-            $('.enable-auto-translate-group').click(function (event) {
-                event.preventDefault();
-                $('.autotranslate-block-group').removeClass('hidden');
-                $('.enable-auto-translate-group').addClass('hidden');
-            })
-            $('#base-locale').change(function (event) {
-                console.log($(this).val());
-                $.cookie('base_locale', $(this).val());
-            })
-            if (typeof $.cookie('base_locale') !== 'undefined') {
-                $('#base-locale').val($.cookie('base_locale'));
-            }
-
-        })
-    </script>
-
 @endsection

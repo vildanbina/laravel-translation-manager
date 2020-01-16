@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use bexvibi\TranslationManager\Models\Translation;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Artisan;
 use Tanmuhittin\LaravelGoogleTranslate\Commands\TranslateFilesCommand;
 
 class Controller extends BaseController
@@ -135,7 +136,7 @@ class Controller extends BaseController
         }
 
         $this->manager->exportTranslations($group, $json);
-
+        Artisan::call('lang:js');
         return ['status' => 'ok'];
     }
 
