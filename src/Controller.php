@@ -14,6 +14,7 @@ class Controller extends BaseController
 
     public function __construct(Manager $manager)
     {
+        if (!\Auth::user()->hasPermission(config('permission.settings.translation-manager'))) abort(401);
         $this->manager = $manager;
     }
 
