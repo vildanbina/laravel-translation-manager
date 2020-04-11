@@ -11,7 +11,7 @@
     <div class="col-md-12" data-module="TranslationManager">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">{{trans('admin.settings')}}</h4>
+                <h4 class="card-title">{{trans('admin.settings.title')}}</h4>
                 <p>Warning, translations are not visible until they are exported back to the app/lang file, using <code>php artisan translation:export</code> command or publish button.</p>
                 <div class="alert alert-success success-import" style="display:none;">
                     <p>Done importing, processed <strong class="counter">N</strong> items! Reload this page to refresh the groups!</p>

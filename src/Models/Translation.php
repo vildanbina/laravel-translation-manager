@@ -20,7 +20,7 @@ class Translation extends Model{
     const STATUS_SAVED = 0;
     const STATUS_CHANGED = 1;
 
-    protected $table = 'ltm_translations';
+    protected $table = 'translations';
     protected $guarded = array('id', 'created_at', 'updated_at');
 
     public function scopeOfTranslatedGroup($query, $group)
