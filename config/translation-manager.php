@@ -10,9 +10,13 @@ return [
     | The default group settings for the elFinder routes.
     |
     */
-    'route'          => [
-        'prefix'     => 'translations',
-        'middleware' => 'auth',
+    'route' => [
+        'prefix' => 'admin/translations',
+        'name' => 'admin.translations',
+        'middleware' => [
+            'web',
+            'auth',
+        ],
     ],
 
     /**
@@ -34,7 +38,7 @@ return [
      *        'validation',
      *    )
      */
-    'exclude_groups' => [],
+    'exclude_groups' => ['auth', 'emails', 'forms', 'routes','installer_messages','_json','laravel-logger','laravelblocker','laravelroles'],
 
     /**
      * Exclude specific languages from Laravel Translation Manager.
@@ -46,12 +50,12 @@ return [
      *        'de',
      *    )
      */
-    'exclude_langs'  => [],
+    'exclude_langs' => [],
 
     /**
      * Export translations with keys output alphabetically.
      */
-    'sort_keys '     => false,
+    'sort_keys ' => false,
 
     'trans_functions' => [
         'trans',

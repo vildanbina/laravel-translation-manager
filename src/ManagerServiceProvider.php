@@ -78,18 +78,18 @@ class ManagerServiceProvider extends ServiceProvider
         $config['namespace'] = 'bexvibi\TranslationManager';
 
         $router->group($config, function ($router) {
-            $router->get('view/{groupKey?}', 'Controller@getView')->where('groupKey', '.*');
-            $router->get('/{groupKey?}', 'Controller@getIndex')->where('groupKey', '.*');
-            $router->post('/add/{groupKey}', 'Controller@postAdd')->where('groupKey', '.*');
-            $router->post('/edit/{groupKey?}', 'Controller@postEdit')->where('groupKey', '.*');
-            $router->post('/groups/add', 'Controller@postAddGroup');
-            $router->post('/delete/{groupKey}/{translationKey}', 'Controller@postDelete')->where('groupKey', '.*');
-            $router->post('/import', 'Controller@postImport');
-            $router->post('/find', 'Controller@postFind');
-            $router->post('/locales/add', 'Controller@postAddLocale');
-            $router->post('/locales/remove', 'Controller@postRemoveLocale');
-            $router->post('/publish/{groupKey}', 'Controller@postPublish')->where('groupKey', '.*');
-            $router->post('/translate-missing', 'Controller@postTranslateMissing');
+            $router->get('view/{groupKey?}', 'Controller@getView')->where('groupKey', '.*')->name('admin.translations.view');
+            $router->get('/{groupKey?}', 'Controller@getIndex')->where('groupKey', '.*')->name('admin.translations.group');
+            $router->post('/add/{groupKey}', 'Controller@postAdd')->where('groupKey', '.*')->name('admin.translations.group-key.add');
+            $router->post('/edit/{groupKey?}', 'Controller@postEdit')->where('groupKey', '.*')->name('admin.translations.group-key.edit');
+            $router->post('/groups/add', 'Controller@postAddGroup')->name('admin.translations.group.add');;
+            $router->post('/delete/{groupKey}/{translationKey}', 'Controller@postDelete')->where('groupKey', '.*')->name('admin.translations.group-key.delete');
+            $router->post('/import', 'Controller@postImport')->name('admin.translations.import');
+            $router->post('/find', 'Controller@postFind')->name('admin.translations.find');
+            $router->post('/locales/add', 'Controller@postAddLocale')->name('admin.translations.locale.add');
+            $router->post('/locales/remove', 'Controller@postRemoveLocale')->name('admin.translations.locale.remove');
+            $router->post('/publish/{groupKey}', 'Controller@postPublish')->where('groupKey', '.*')->name('admin.translations.publish.group');
+            $router->post('/translate-missing', 'Controller@postTranslateMissing')->name('admin.translations.missing');
         });
     }
 
