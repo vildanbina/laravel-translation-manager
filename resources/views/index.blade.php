@@ -43,7 +43,7 @@
                                 </select>
                             </div>
                             <div class="col-sm-2">
-                                <button type="submit" class="btn btn-success btn-block btn-rounded" data-disable-with="Loading.."><i class="fas fa-upload"></i> Import groups</button>
+                                <button type="submit" class="btn btn-success btn-block btn-rounded" data-disable-with="Loading.."><i class="ti-upload"></i> Import groups</button>
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                 <form class="form-find" method="POST" action="<?php echo action('\bexvibi\TranslationManager\Controller@postFind') ?>" data-remote="true" role="form" data-confirm="Are you sure you want to scan you app folder? All found translation keys will be added to the database.">
                     <div class="form-group">
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                        <button type="submit" class="btn btn-info btn-rounded" data-disable-with="Searching.."><i class="fas fa-search"></i> Find translations in files</button>
+                        <button type="submit" class="btn btn-info btn-rounded" data-disable-with="Searching.."><i class="ti-check"></i> Find translations in files</button>
                     </div>
                 </form>
                 <?php endif; ?>
@@ -59,8 +59,8 @@
                 <form class="form-inline form-publish" method="POST" action="<?php echo action('\bexvibi\TranslationManager\Controller@postPublish', $group) ?>" data-remote="true" role="form"
                       data-confirm="Are you sure you want to publish the translations group '<?php echo $group ?>? This will overwrite existing language files.">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                    <button type="submit" class="btn btn-info btn-rounded" data-disable-with="Publishing.."><i class="fas fa-upload"></i> Publish translations</button>
-                    <a href="<?= action('\bexvibi\TranslationManager\Controller@getIndex') ?>" class="btn btn-light"><i class="fa fa-reply-all"></i> Back</a>
+                    <button type="submit" class="btn btn-info btn-rounded" data-disable-with="Publishing.."><i class="ti-upload"></i> Publish translations</button>
+                    <a href="<?= action('\bexvibi\TranslationManager\Controller@getIndex') ?>" class="btn btn-light"><i class="ti-back-left"></i> Back</a>
                 </form>
                 <?php endif; ?>
                 </p>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-light btn-rounded" name="add-group">
-                            <i class="fas fa-edit"></i> Add and edit keys
+                            <i class="ti-pencil-alt"></i> Add and edit keys
                         </button>
                     </div>
                 </form>
@@ -93,7 +93,7 @@
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-rounded">
-                            <i class="fas fa-plus"></i> Add keys
+                            <i class="ti-plus"></i> Add keys
                         </button>
                     </div>
                 </form>
@@ -153,7 +153,7 @@
                             <li>
                                 <div class="form-group">
                                     <button type="submit" name="remove-locale[<?php echo $locale ?>]" class="btn btn-danger btn-rounded btn-xs" data-disable-with="...">
-                                        <i class="fas fa-close"></i>
+                                        <i class="ti-close"></i>
                                     </button>
                                     <?php echo $locale ?>
 
@@ -173,7 +173,7 @@
                                     <input type="text" name="new-locale" class="form-control"/>
                                 </div>
                                 <div class="col-sm-2">
-                                    <button type="submit" class="btn btn-primary btn-block btn-rounded" data-disable-with="Adding.."><i class="fas fa-plus"></i> Add new locale</button>
+                                    <button type="submit" class="btn btn-primary btn-block btn-rounded" data-disable-with="Adding.."><i class="ti-plus"></i> Add new locale</button>
                                 </div>
                             </div>
                         </div>
@@ -184,7 +184,7 @@
                     <form class="form-inline form-publish-all" method="POST" action="<?php echo action('\bexvibi\TranslationManager\Controller@postPublish', '*') ?>" data-remote="true" role="form"
                           data-confirm="Are you sure you want to publish all translations group? This will overwrite existing language files.">
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                        <button type="submit" class="btn btn-primary btn-rounded" data-disable-with="Publishing.."><i class="fas fa-check"></i> Publish all</button>
+                        <button type="submit" class="btn btn-primary btn-rounded" data-disable-with="Publishing.."><i class="ti-check"></i> Publish all</button>
                     </form>
                 </fieldset>
 
