@@ -5,6 +5,7 @@ use Illuminate\Routing\Controller as BaseController;
 use bexvibi\TranslationManager\Models\Translation;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Tanmuhittin\LaravelGoogleTranslate\Commands\TranslateFilesCommand;
 
 class Controller extends BaseController
@@ -14,7 +15,7 @@ class Controller extends BaseController
 
     public function __construct(Manager $manager)
     {
-        if (!\Auth::user()->hasPermission(config('permission.settings.translation-manager'))) abort(401);
+        if (Auth::check() && !\Auth::user()->hasPermission(config('permission.settings.translation-manager'))) abort(401);
         $this->manager = $manager;
     }
 
