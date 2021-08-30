@@ -1,4 +1,4 @@
-<?php namespace bexvibi\TranslationManager\Models;
+<?php namespace vildanbina\TranslationManager\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;

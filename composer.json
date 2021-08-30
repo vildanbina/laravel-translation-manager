@@ -1,5 +1,5 @@
 {
-  "name": "bexvibi/laravel-translation-manager",
+  "name": "vildanbina/laravel-translation-manager",
   "description": "Manage Laravel Translations",
   "keywords": [
     "laravel",
@@ -22,7 +22,7 @@
   },
   "autoload": {
     "psr-4": {
-      "bexvibi\\TranslationManager\\": "src/"
+      "vildanbina\\TranslationManager\\": "src/"
     }
   },
   "extra": {
@@ -31,7 +31,7 @@
     },
     "laravel": {
       "providers": [
-        "bexvibi\\TranslationManager\\ManagerServiceProvider"
+        "vildanbina\\TranslationManager\\ManagerServiceProvider"
       ]
     }
   },

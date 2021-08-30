@@ -1,6 +1,6 @@
 <?php
 
-namespace bexvibi\TranslationManager;
+namespace vildanbina\TranslationManager;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -8,8 +8,8 @@ use Symfony\Component\Finder\Finder;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Foundation\Application;
-use bexvibi\TranslationManager\Models\Translation;
-use bexvibi\TranslationManager\Events\TranslationsExportedEvent;
+use vildanbina\TranslationManager\Models\Translation;
+use vildanbina\TranslationManager\Events\TranslationsExportedEvent;
 
 class Manager
 {

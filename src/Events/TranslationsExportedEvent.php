@@ -6,7 +6,7 @@
  * Time: 12:40 PM
  */
 
-namespace bexvibi\TranslationManager\Events;
+namespace vildanbina\TranslationManager\Events;
 
 
 class TranslationsExportedEvent

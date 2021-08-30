@@ -1,8 +1,8 @@
 <?php
 
-namespace bexvibi\TranslationManager\Console;
+namespace vildanbina\TranslationManager\Console;
 
-use bexvibi\TranslationManager\Manager;
+use vildanbina\TranslationManager\Manager;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -23,7 +23,7 @@ class ExportCommand extends Command
      */
     protected $description = 'Export translations to PHP files';
 
-    /** @var \bexvibi\TranslationManager\Manager */
+    /** @var \vildanbina\TranslationManager\Manager */
     protected $manager;
 
     public function __construct(Manager $manager)

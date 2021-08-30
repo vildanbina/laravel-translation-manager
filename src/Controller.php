@@ -1,8 +1,8 @@
-<?php namespace bexvibi\TranslationManager;
+<?php namespace vildanbina\TranslationManager;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
-use bexvibi\TranslationManager\Models\Translation;
+use vildanbina\TranslationManager\Models\Translation;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +10,7 @@ use Tanmuhittin\LaravelGoogleTranslate\Commands\TranslateFilesCommand;
 
 class Controller extends BaseController
 {
-    /** @var \bexvibi\TranslationManager\Manager */
+    /** @var \vildanbina\TranslationManager\Manager */
     protected $manager;
 
     public function __construct(Manager $manager)
@@ -55,7 +55,7 @@ class Controller extends BaseController
             ->with('group', $group)
             ->with('numTranslations', $numTranslations)
             ->with('numChanged', $numChanged)
-            ->with('editUrl', action('\bexvibi\TranslationManager\Controller@postEdit', [$group]))
+            ->with('editUrl', action('\vildanbina\TranslationManager\Controller@postEdit', [$group]))
             ->with('deleteEnabled', $this->manager->getConfig('delete_enabled'));
     }
 
@@ -131,7 +131,7 @@ class Controller extends BaseController
     {
         $group = str_replace(".", '', $request->input('new-group'));
         if ($group) {
-            return redirect()->action('\bexvibi\TranslationManager\Controller@getView', $group);
+            return redirect()->action('\vildanbina\TranslationManager\Controller@getView', $group);
         } else {
             return redirect()->back();
         }
@@ -176,7 +176,7 @@ class Controller extends BaseController
                     'name' => $newLocale . '|' . $base_string->key,
                 ]);
                 app()->call(
-                    'bexvibi\TranslationManager\Controller@postEdit',
+                    'vildanbina\TranslationManager\Controller@postEdit',
                     [
                         'group' => $group
                     ]

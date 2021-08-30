@@ -1,8 +1,8 @@
 <?php
 
-namespace bexvibi\TranslationManager\Console;
+namespace vildanbina\TranslationManager\Console;
 
-use bexvibi\TranslationManager\Manager;
+use vildanbina\TranslationManager\Manager;
 use Illuminate\Console\Command;
 
 class FindCommand extends Command
@@ -21,7 +21,7 @@ class FindCommand extends Command
      */
     protected $description = 'Find translations in php/twig files';
 
-    /** @var \bexvibi\TranslationManager\Manager */
+    /** @var \vildanbina\TranslationManager\Manager */
     protected $manager;
 
     public function __construct(Manager $manager)

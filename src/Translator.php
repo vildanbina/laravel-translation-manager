@@ -1,4 +1,4 @@
-<?php namespace bexvibi\TranslationManager;
+<?php namespace vildanbina\TranslationManager;
 
 use Illuminate\Translation\Translator as LaravelTranslator;
 use Illuminate\Events\Dispatcher;

@@ -1,9 +1,9 @@
 <?php
 
-namespace bexvibi\TranslationManager\Console;
+namespace vildanbina\TranslationManager\Console;
 
 use Illuminate\Console\Command;
-use bexvibi\TranslationManager\Manager;
+use vildanbina\TranslationManager\Manager;
 
 class ResetCommand extends Command
 {
@@ -21,7 +21,7 @@ class ResetCommand extends Command
      */
     protected $description = 'Delete all translations from the database';
 
-    /** @var \bexvibi\TranslationManager\Manager */
+    /** @var \vildanbina\TranslationManager\Manager */
     protected $manager;
 
     public function __construct(Manager $manager)

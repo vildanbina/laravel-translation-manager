@@ -1,4 +1,4 @@
-<?php namespace bexvibi\TranslationManager;
+<?php namespace vildanbina\TranslationManager;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
@@ -25,7 +25,7 @@ class ManagerServiceProvider extends ServiceProvider
         $this->publishes([$configPath => config_path('translation-manager.php')], 'config');
 
         $this->app->singleton('translation-manager', function ($app) {
-            $manager = $app->make('bexvibi\TranslationManager\Manager');
+            $manager = $app->make('vildanbina\TranslationManager\Manager');
             return $manager;
         });
 
@@ -75,7 +75,7 @@ class ManagerServiceProvider extends ServiceProvider
         ], 'migrations');
 
         $config = $this->app['config']->get('translation-manager.route', []);
-        $config['namespace'] = 'bexvibi\TranslationManager';
+        $config['namespace'] = 'vildanbina\TranslationManager';
 
         $router->group($config, function ($router) {
             $router->get('view/{groupKey?}', 'Controller@getView')->where('groupKey', '.*')->name('admin.translations.view');
